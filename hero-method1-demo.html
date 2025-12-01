@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>龍騰數位星球 - 課程選單示意 v2</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+        "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: radial-gradient(circle at top, #1e2765 0, #05091a 55%, #02030a 100%);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .page-wrap {
+      width: 100%;
+      max-width: 1365px;
+      margin-inline: auto;
+    }
+
+    /* hero 圖片維持 16:9，同前一版 */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 100vh;
+      overflow: hidden;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+      background: #02030a;
+    }
+
+    .hero-section picture,
+    .hero-section img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* 用百分比定位容器，維持「相對位置」不變 */
+    .selector-container {
+      position: absolute;
+      left: 50%;
+      bottom: 11%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: min(4vw, 2.75rem);
+      justify-content: center;
+      align-items: center;
+      padding-inline: 1.5rem;
+      pointer-events: none;
+    }
+
+    /* ★ 這裡改成用 vw（隨畫面寬度等比例縮放），而不是固定 rem */
+    .system-btn {
+      pointer-events: auto;
+      width: min(12vw, 7rem);
+      height: min(12vw, 7rem);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      background: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.8), rgba(115, 185, 255, 0.9) 45%, rgba(10, 40, 90, 0.95) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+      line-height: 1.3;
+      font-weight: 700;
+      color: #072145;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.7),
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(164, 215, 255, 0.8);
+      cursor: pointer;
+      transform: translateY(0);
+      transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out,
+        filter 0.2s ease-out;
+      backdrop-filter: blur(12px);
+    }
+
+    .system-btn:focus-visible {
+      outline: 3px solid #ffe066;
+      outline-offset: 4px;
+    }
+
+    .system-btn:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 16px 40px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(190, 230, 255, 1);
+      filter: brightness(1.05);
+    }
+
+    .system-btn:active {
+      transform: translateY(-2px) scale(0.98);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 10px 24px rgba(0, 0, 0, 0.7),
+        0 0 24px rgba(190, 230, 255, 1);
+      filter: brightness(0.98);
+    }
+
+    .system-btn span {
+      display: block;
+    }
+
+    .system-btn .en {
+      font-size: 0.7em;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.15em;
+      opacity: 0.9;
+    }
+
+    .system-btn .zh {
+      font-size: 1.3em;
+      letter-spacing: 0.05em;
+    }
+
+    .caption {
+      margin: 1.5rem auto 3rem;
+      max-width: 50rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    /* 手機上：按鈕再小一點、位置稍往上，避免感覺被「放大」 */
+    @media (max-width: 768px) {
+      .hero-section {
+        border-radius: 0 0 18px 18px;
+      }
+
+      .selector-container {
+        bottom: 13%;
+        gap: min(6vw, 2rem);
+      }
+
+      .system-btn {
+        width: min(18vw, 5.2rem);
+        height: min(18vw, 5.2rem);
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .selector-container {
+        bottom: 14%;
+      }
+
+      .system-btn {
+        width: min(20vw, 4.6rem);
+        height: min(20vw, 4.6rem);
+        font-size: clamp(0.8rem, 3.7vw, 0.95rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <section class="hero-section">
+      <picture>
+        <img src="hero-image.jpg" alt="龍騰數位星球 主視覺" loading="lazy" />
+      </picture>
+
+      <div class="selector-container">
+        <button class="system-btn" type="button" onclick="alert('前往普高課程');">
+          <span class="en">GENERAL</span>
+          <span class="zh">普高</span>
+        </button>
+        <button class="system-btn" type="button" onclick="alert('前往技高課程');">
+          <span class="en">VOCATIONAL</span>
+          <span class="zh">技高</span>
+        </button>
+      </div>
+    </section>
+
+    <p class="caption">
+      本檔示範「等比例縮放 v2」：<strong>按鈕尺寸改用 vw（視窗寬度）做基準</strong>，因此在桌機與手機上，
+      按鈕會隨圖片一起縮放，維持接近相同的相對比例，不會再出現手機按鈕看起來特別大、遮住文字的情況。
+      只要把兩顆按鈕的 <code>onclick</code> 換成你的導頁程式即可直接套用。
+    </p>
+  </div>
+</body>
+</html>
